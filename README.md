@@ -8,6 +8,7 @@
   - Please update the ARNs in the config file under /srs/main/resources
 
 **Steps to create Kinesis stream**
+
 aws kinesis create-stream --stream-name ExampleInputStream --shard-count 1 --region us-east-1
 aws kinesis create-stream --stream-name ExampleOutputStream --shard-count 1 --region us-east-1
 
