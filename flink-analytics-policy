@@ -1,0 +1,69 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ReadCode",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<change me for S3 bucket>/*"
+            ]
+        },
+        {
+            "Sid": "ListCloudwatchLogGroups",
+            "Effect": "Allow",
+            "Action": [
+                "logs:DescribeLogGroups"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:<account id>:log-group:*"
+            ]
+        },
+        {
+            "Sid": "ListCloudwatchLogStreams",
+            "Effect": "Allow",
+            "Action": [
+                "logs:DescribeLogStreams"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:<account id>:log-group:/aws/kinesis-analytics/MyApplication:log-stream:*"
+            ]
+        },
+        {
+            "Sid": "PutCloudwatchLogs",
+            "Effect": "Allow",
+            "Action": [
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:<account id>:log-group:/aws/kinesis-analytics/MyApplication:log-stream:kinesis-analytics-log-stream"
+            ]
+        },
+        {
+            "Sid": "ReadInputStream",
+            "Effect": "Allow",
+            "Action": "kinesis:*",
+            "Resource": "arn:aws:kinesis:us-east-1:<account id>:stream/ExampleInputStream"
+        },
+        {
+            "Sid": "WriteOutputStream",
+            "Effect": "Allow",
+            "Action": "kinesis:*",
+            "Resource": "arn:aws:kinesis:us-east-1:<account id>:stream/ExampleOutputStream"
+        },
+        {
+            "Sid": "AccessDDBStreamOnly",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:DescribeStream",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:ListStreams"
+            ],
+            "Resource": "arn:aws:dynamodb:us-east-1:<account id>:table/<change me for DynamoDB Table>/stream/*"
+        }
+    ]
+}
